@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Agenda MVVM SQLite"
+             x:Class="AppNovaAgenda_SQLite_MVVM.View.ListaContatos">
+
+    <!--
+        Command que vai tratar uma propriedade
+        Order Primary é pra aparecer direto, porque pode ocorrer
+        de eu ter varios toolbaritems e ele cria um menuzinho de 3
+        pontinhos, ai eu clico e vejo uma lista.
+        o primary indica qual que eu quero mostrar de cara pro 
+        usuário sempre.
+    -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Novo" 
+                     Command="{Binding IrParaNovoContato}"
+                     Order="Primary" />
+        <ToolbarItem Text="Atualizar" 
+                     Command="{Binding AtualizarLista}"
+                     Order="Primary" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="10">
+            <StackLayout Orientation="Horizontal">
+                <SearchBar Text="{Binding ParametroBusca}" />
+                <Button Text="Buscar" Command="{Binding BuscarContato}" />
+            </StackLayout>
+
+            <!--
+            CollectionView tem basicamente todos os recursos da listView,
+            só que bem melhorado.
+            EmptyView tem um tratamento quando a lista ta vazia.
+            Diferente do ListView onde tinhamos que implementar na mão.
+            -->
+            <CollectionView ItemsSource="{Binding ListaContatos}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Id}" FontSize="Medium" />
+                            <Label Text="{Binding Nome}" FontSize="Medium" />
+                            <Label Text="{Binding Telefone}" />
+                            <BoxView HeightRequest="1" BackgroundColor="#CCC" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Label Text="Nenhum contato ainda :(" />
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+
+</ContentPage>

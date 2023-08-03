@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Novo Contato"
+             x:Class="AppNovaAgenda_SQLite_MVVM.View.NovoContato">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salvar" 
+                     Command="{Binding SalvarNovoContato}"
+                     Order="Primary" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Nome:" />
+            <Entry Text="{Binding Nome}" />
+
+            <Label Text="Telefone:" />
+            <Entry Text="{Binding Telefone}" Keyboard="Numeric" />
+
+            <Label Text="E-mail:" />
+            <Entry Text="{Binding Email}" Keyboard="Email" />
+
+            <Label Text="Observações:" />
+            <Entry Text="{Binding Observacoes}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
